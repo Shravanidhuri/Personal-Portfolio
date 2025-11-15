@@ -9,7 +9,7 @@ This website highlights my **skills, projects, achievements, community experienc
 
 ## 🚀 Live Portfolio
 
-👉 **Visit Here:** *(Add your live portfolio link)*
+👉 **Visit Here:** *https://shravaniportfolio12.netlify.app/*
 
 ---
 
@@ -89,7 +89,7 @@ Each project includes:
 | **Frontend**   | HTML5, CSS3, JavaScript                          |
 | **Styling**    | Custom CSS, Animations                           |
 | **Forms**      | Web3Forms API                                    |
-| **Deployment** | *(Add platform: Vercel / Render / GitHub Pages)* |
+| **Deployment** | Netlify|
 
 ---
 
