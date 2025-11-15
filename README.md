@@ -93,22 +93,7 @@ Each project includes:
 
 ---
 
-## 🔧 Setup Instructions
 
-1. Clone the repository
-
-   ```bash
-   git clone https://github.com/your-username/your-portfolio.git
-   ```
-2. Add your own images & certificate files.
-3. Insert your Web3Forms access key into the form:
-
-   ```html
-   <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
-   ```
-4. Open `index.html` in the browser — done!
-
----
 
 ## 💜 Author
 
