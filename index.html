@@ -634,3 +634,276 @@ tiltCards.forEach(card => {
 </body>
 </html>
 
+<!-- Updated version with WOW factor elements like 3D hover, glassmorphism, neon glow, and scroll animations -->
+<!-- ====== ADDITIONS ======
+✨ Smooth scroll animations (AOS-like with JS)
+✨ 3D Tilt effect on cards
+✨ Glassmorphism navbar
+✨ Animated border glow hover
+
+=========================================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shravani Dhuri - Engineer, YouTuber & Content Creator</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* 🔮 AURORA BACKGROUND */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 10% 20%, #ff8aff, transparent 60%),
+              radial-gradient(circle at 80% 80%, #6a00ff, transparent 60%),
+              radial-gradient(circle at 50% 0%, #00eaff, transparent 60%);
+  filter: blur(150px);
+  z-index: -2;
+  animation: auroraMove 10s infinite alternate ease-in-out;
+}
+@keyframes auroraMove {
+  0% { filter: blur(140px); }
+  100% { filter: blur(200px); }
+}
+
+/* 🌫️ GLASS NAVBAR */
+.navbar {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+/* 🎇 GLOW HOVER EFFECT */
+.btn-primary, .stat, .achievement-card, .project-card {
+  transition: all .3s ease;
+}
+.btn-primary:hover, .stat:hover, .achievement-card:hover, .project-card:hover {
+  box-shadow: 0 0 20px rgba(183, 0, 255, 0.8);
+  transform: translateY(-4px);
+}
+
+
+
+/* 🧊 GLASSMORPHIC CARDS */
+.project-card, .achievement-card, .internship-card, .community-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* 🎮 3D TILT EFFECT */
+.tilt {
+  transition: transform .25s ease;
+}
+.tilt:hover {
+  transform: perspective(600px) rotateX(6deg) rotateY(-6deg);
+}
+
+/* ✨ SCROLL REVEAL */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+[data-animate].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ⚡ GLITCH TEXT EFFECT FOR NAME */
+.hero-title {
+  position: relative;
+  font-weight: 800;
+  text-transform: uppercase;
+  animation: glitch 2s infinite;
+}
+@keyframes glitch {
+  0% { text-shadow: 2px 2px #ff00c8; }
+  20% { text-shadow: -3px -2px #00eaff; }
+  40% { text-shadow: 3px -2px #ff00c8; }
+  60% { text-shadow: -3px 2px #00eaff; }
+  80% { text-shadow: 2px -2px #ff00c8; }
+  100% { text-shadow: -2px 2px #00eaff; }
+}
+
+/* 🧲 MAGNETIC BUTTONS */
+.magnetic {
+  transition: transform .2s ease;
+  display: inline-block;
+}
+.magnetic:hover {
+  transform: scale(1.1) translateY(-3px);
+}
+
+/* 🎆 NEON BORDER ANIMATION */
+.neon-border {
+  border: 2px solid transparent;
+  border-radius: 15px;
+  background: linear-gradient(#000, #000) padding-box,
+              linear-gradient(90deg,#ff00e1,#7800ff,#00eaff,#ff00e1) border-box;
+  animation: neonRotate 5s linear infinite;
+}
+@keyframes neonRotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+
+
+/* 🟣 PARTICLE SPARKLES */
+.sparkle-container span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffb8ff;
+  border-radius: 50%;
+  animation: sparkle 4s infinite ease-in-out;
+  opacity: 0.7;
+}
+@keyframes sparkle {
+  0% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(-40px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.5; }
+}
+
+/* 🧊 3D TILT HOVER CARDS */
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform .2s ease;
+}
+.tilt:hover {
+  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+}
+
+/* 💫 CURSOR TRAIL */
+.cursor-trail {
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: .9;
+  filter: blur(4px);
+  animation: fadeTrail .7s forwards;
+}
+@keyframes fadeTrail { to { opacity: 0; transform: scale(0.5); } }
+
+/* 📜 SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: .7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 🌀 MOUSE PARALLAX LAYERS */
+.parallax-layer {
+  position: absolute;
+  pointer-events: none;
+  transition: transform .1s linear;
+}
+</style>
+</head>
+<body>
+
+
+
+<script>
+// ⭐ Scroll Reveal
+const revealElements = document.querySelectorAll('[data-animate]');
+function reveal() {
+  revealElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 80) el.classList.add("visible");
+  });
+}
+window.addEventListener('scroll', reveal);
+reveal();
+</script>
+
+<script>
+// 🧊 3D Hover Tilt
+const tiltCards = document.querySelectorAll('.tilt');
+tiltCards.forEach(card => {
+  card.addEventListener('mousemove', (e)=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y-centerY)/12;
+    const rotateY = (centerX-x)/12;
+    card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform = "perspective(600px) rotateX(0) rotateY(0)";
+  });
+});
+</script>
+
+
+<!-- 🌌 PARTICLE GENERATOR -->
+<script>
+const sparkleContainer = document.createElement('div');
+sparkleContainer.classList.add('sparkle-container');
+sparkleContainer.style.position='fixed';
+sparkleContainer.style.inset='0';
+sparkleContainer.style.pointerEvents='none';
+sparkleContainer.style.zIndex='-1';
+document.body.appendChild(sparkleContainer);
+for(let i=0;i<35;i++){
+  const p=document.createElement('span');
+  p.style.left=Math.random()*100+'vw';
+  p.style.top=Math.random()*100+'vh';
+  p.style.animationDelay=(Math.random()*3)+'s';
+  sparkleContainer.appendChild(p);
+}
+</script>
+
+<!-- ⭐ CURSOR TRAIL SCRIPT -->
+<script>
+document.addEventListener('mousemove', e => {
+  const trail = document.createElement('div');
+  trail.className = 'cursor-trail';
+  trail.style.left = e.pageX + 'px';
+  trail.style.top = e.pageY + 'px';
+  document.body.appendChild(trail);
+  setTimeout(() => trail.remove(), 700);
+});
+</script>
+
+<!-- 📜 SCROLL REVEAL SCRIPT -->
+<script>
+const reveals = document.querySelectorAll('.reveal');
+function revealOnScroll(){
+  reveals.forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100) el.classList.add('visible');
+  });
+}
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll();
+</script>
+
+<!-- 🌀 PARALLAX MOUSE EFFECT -->
+<script>
+document.addEventListener('mousemove', e=>{
+  document.querySelectorAll('.parallax-layer').forEach(layer=>{
+    const speed = layer.getAttribute('data-speed');
+    const x = (window.innerWidth/2 - e.pageX) * speed;
+    const y = (window.innerHeight/2 - e.pageY) * speed;
+    layer.style.transform = `translate(${x}px, ${y}px)`;
+  });
+});
+</script>
+</body>
+</html>
+
+
+
