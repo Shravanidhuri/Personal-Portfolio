@@ -508,3 +508,129 @@ document.addEventListener("mousemove", e=>{
 
 </body>
 </html>
+
+<!-- Updated version with WOW factor elements like 3D hover, glassmorphism, neon glow, and scroll animations -->
+<!-- ====== ADDITIONS ======
+✨ Smooth scroll animations (AOS-like with JS)
+✨ 3D Tilt effect on cards
+✨ Floating Aurora background
+✨ Glassmorphism navbar
+✨ Animated border glow hover
+
+=========================================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shravani Dhuri - Engineer, YouTuber & Content Creator</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* 🔮 AURORA BACKGROUND */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 10% 20%, #ff8aff, transparent 60%),
+              radial-gradient(circle at 80% 80%, #6a00ff, transparent 60%),
+              radial-gradient(circle at 50% 0%, #00eaff, transparent 60%);
+  filter: blur(150px);
+  z-index: -2;
+  animation: auroraMove 10s infinite alternate ease-in-out;
+}
+@keyframes auroraMove {
+  0% { filter: blur(140px); }
+  100% { filter: blur(200px); }
+}
+
+/* 🌫️ GLASS NAVBAR */
+.navbar {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+/* 🎇 GLOW HOVER EFFECT */
+.btn-primary, .stat, .achievement-card, .project-card {
+  transition: all .3s ease;
+}
+.btn-primary:hover, .stat:hover, .achievement-card:hover, .project-card:hover {
+  box-shadow: 0 0 20px rgba(183, 0, 255, 0.8);
+  transform: translateY(-4px);
+}
+
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+/* 🧊 GLASSMORPHIC CARDS */
+.project-card, .achievement-card, .internship-card, .community-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* 🎮 3D TILT EFFECT */
+.tilt {
+  transition: transform .25s ease;
+}
+.tilt:hover {
+  transform: perspective(600px) rotateX(6deg) rotateY(-6deg);
+}
+
+/* ✨ SCROLL REVEAL */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+[data-animate].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+
+
+<script>
+// ⭐ Scroll Reveal
+const revealElements = document.querySelectorAll('[data-animate]');
+function reveal() {
+  revealElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 80) el.classList.add("visible");
+  });
+}
+window.addEventListener('scroll', reveal);
+reveal();
+</script>
+
+<script>
+// 🧊 3D Hover Tilt
+const tiltCards = document.querySelectorAll('.tilt');
+tiltCards.forEach(card => {
+  card.addEventListener('mousemove', (e)=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y-centerY)/12;
+    const rotateY = (centerX-x)/12;
+    card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform = "perspective(600px) rotateX(0) rotateY(0)";
+  });
+});
+</script>
+
+</body>
+</html>
+
