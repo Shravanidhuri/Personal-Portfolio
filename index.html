@@ -902,6 +902,38 @@ document.addEventListener('mousemove', e=>{
   });
 });
 </script>
+    <style>
+.cursor-trail {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: #d28cff;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  filter: blur(4px);
+  animation: trailFade .8s linear forwards;
+}
+
+@keyframes trailFade {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+</style>
+
+<script>
+document.addEventListener("mousemove", e => {
+  const dot = document.createElement("div");
+  dot.className = "cursor-trail";
+  document.body.appendChild(dot);
+  dot.style.left = e.clientX + "px";
+  dot.style.top = e.clientY + "px";
+  setTimeout(() => dot.remove(), 700);
+});
+</script>
+
 </body>
 </html>
 
